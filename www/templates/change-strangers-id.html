@@ -1,0 +1,17 @@
+<ion-view view-title="Change">
+  <ion-content>
+    <div class="item item-avatar">
+      <img src="{{user.avatar}}">
+      <h2>{{user.name}}</h2>
+    </div>
+    <a ng-show="s_asker_q" class="button button-positive">he/she is asking you, click to agree</a>
+    <a ng-show="s_target_q" class="button button-positive">you are asking he/she, wait for answer</a>
+    <a ng-show="partner_q" class="button button-positive">he/she is your partner</a>
+    <div class="">
+      <a ng-repeat="p in photos" style="padding:0.5px;">
+        <img src="{{p.url}}" alt="Car"  style="width:300px; height:300px;" />
+      </a>
+    </div>
+    <!-- <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()"></ion-infinite-scroll> -->
+  </ion-content>
+</ion-view>

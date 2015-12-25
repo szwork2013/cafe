@@ -72,12 +72,46 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('HomeCtrl', function($scope, $http, $state, $rootScope, $window, Chats, Post, Photo, Api) {
+.controller('HomeCtrl', function($scope, $http, $state, $rootScope, $window, $resource, Chats, Post, Photo, Api) {
   $scope.chats = Chats.all()
-  Photo.query().$promise.then(function(data) {
-    console.log(JSON.stringify(data))
-    $scope.photos = data
-  })
+  var Par = $resource($rootScope.baseUrl + '/api/partners/:id')
+  $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
+  $scope.loadMore = function() {
+    if ($scope.dataLength == $scope.limit){
+      Par.get({id:0, page: $scope.page, lastId: $scope.lastId})
+      .$promise.then(function(data) {
+        console.log(JSON.stringify(data))
+        $scope.dataLength = data.photos.length
+        $scope.photos = $scope.photos.concat(data.photos)
+        if ($scope.page == 0){$scope.s_askers = data.s_askers; $scope.s_targets = data.s_targets;
+           $scope.partners = data.partners}
+        if (data.photos.length == $scope.limit) {$scope.lastId = data.photos[$scope.limit-1].id}
+        $scope.page += 1
+        $scope.$broadcast('scroll.infiniteScrollComplete')
+      })
+      // $scope.$broadcast('scroll.infiniteScrollComplete')
+    }
+  }
+})
+
+.controller('PartnersIdCtrl', function($scope, $http, $state, $rootScope, $stateParams, $window, $resource, Chats, Post, Photo, Api) {
+  var Par = $resource($rootScope.baseUrl + '/api/partners/:id')
+  $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
+  $scope.loadMore = function() {
+    if ($scope.dataLength == $scope.limit){
+      Par.get({id:$stateParams.id, page: $scope.page, lastId: $scope.lastId})
+      .$promise.then(function(data) {
+        console.log(JSON.stringify(data))
+        $scope.dataLength = data.photos.length
+        $scope.photos = $scope.photos.concat(data.photos)
+        if ($scope.page == 0){$scope.user = data.user}
+        if (data.photos.length == $scope.limit) {$scope.lastId = data.photos[$scope.limit-1].id}
+        $scope.page += 1
+        $scope.$broadcast('scroll.infiniteScrollComplete')
+      })
+      // $scope.$broadcast('scroll.infiniteScrollComplete')
+    }
+  }
 })
 
 .controller('WriteCtrl', function($scope, $http, $state, $rootScope, Qiniu, Post, Photo, Api) {
@@ -111,8 +145,35 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChangeCtrl', function($scope, $http, $rootScope) {
+.controller('ChangeCtrl', function($scope, $http, $rootScope, $state, $window, $resource, Chats, Post, Photo, Api) {
+  $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
+  $scope.loadMore = function() {
+    // if ($scope.dataLength == $scope.limit){
+      Photo.query({page: $scope.page, lastId: $scope.lastId})
+      .$promise.then(function(data) {
+        console.log(JSON.stringify(data))
+        // $scope.dataLength = data.length
+        $scope.photos = $scope.photos.concat(data)
+        $scope.page += 1
+        // if (data.length == $scope.limit) {$scope.lastId = data[$scope.limit-1].id}
+        $scope.$broadcast('scroll.infiniteScrollComplete')
+      })
+    // }
+  }
 
+})
+
+.controller('StrangersIdCtrl', function($scope, $http, $rootScope, $stateParams, $state, $window, $resource, Chats, Post, Photo, Api) {
+  var Str = $resource($rootScope.baseUrl + '/api/strangers/:id')
+  Str.get({id: $stateParams.id}).$promise.then(function(data) {
+    console.log(JSON.stringify(data))
+    $scope.photos = data.photos
+    $scope.user = data.user
+    $scope.s_asker_q = data.s_asker_q
+    $scope.s_target_q = data.s_target_q
+    $scope.partner_q = data.partner_q
+    // user: user, s_asker_q:user.s_asker?(@api_user), s_target_q:user.s_target?(@api_user), partner_q:user.partner?(@api_user)
+  })
 })
 
 .controller('MessageCtrl', function($scope, $http, $rootScope,$cordovaCamera,$cordovaCapture, $cordovaImagePicker,$resource,$cordovaInAppBrowser) {
