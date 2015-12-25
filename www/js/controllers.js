@@ -19,34 +19,29 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Chats, Api) {
+.controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Chats, Photo, Api) {
   $scope.chats = Chats.all()
   $scope.chat = Chats.get($stateParams.id)
   $scope.loginData = {email: "gsp@gmail.com", password: "191954"}
   $scope.signupData = {name:'gsp'}
   $rootScope.loginErr = ''
   $rootScope.signupErr = ''
-
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     var sess = new Session($scope.loginData)
     sess.$save(function(data) {
       console.log(data.token)
-      // console.log(err);
       if (data.token) {
         $window.localStorage.token = data.token
         $scope.currentUser = Boolean($window.localStorage.token)
         $http.defaults.headers.common['Authorization'] = "Token token=" + data.token
         console.log($window.localStorage.token)
-        // $scope.closeForms()
         $state.go('tab.home', {}, {reload: true})
       } else {
         console.log(data.err)
         $rootScope.loginErr = data.err
-        // $scope.showForms()
       }
     })
-
   }
 
   $scope.doSignup = function() {
@@ -70,6 +65,17 @@ angular.module('starter.controllers', [])
     })
   }
 
+  $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
+  $scope.loadMore = function() {
+      Photo.query({page: $scope.page, lastId: $scope.lastId})
+      .$promise.then(function(data) {
+        // console.log(JSON.stringify(data))
+        $scope.photos = $scope.photos.concat(data)
+        $scope.page += 1
+        $scope.$broadcast('scroll.infiniteScrollComplete')
+      })
+  }
+
 })
 
 .controller('HomeCtrl', function($scope, $http, $state, $rootScope, $window, $resource, Chats, Post, Photo, Api) {
@@ -85,26 +91,6 @@ angular.module('starter.controllers', [])
         $scope.photos = $scope.photos.concat(data.photos)
         if ($scope.page == 0){$scope.s_askers = data.s_askers; $scope.s_targets = data.s_targets;
            $scope.partners = data.partners}
-        if (data.photos.length == $scope.limit) {$scope.lastId = data.photos[$scope.limit-1].id}
-        $scope.page += 1
-        $scope.$broadcast('scroll.infiniteScrollComplete')
-      })
-      // $scope.$broadcast('scroll.infiniteScrollComplete')
-    }
-  }
-})
-
-.controller('PartnersIdCtrl', function($scope, $http, $state, $rootScope, $stateParams, $window, $resource, Chats, Post, Photo, Api) {
-  var Par = $resource($rootScope.baseUrl + '/api/partners/:id')
-  $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
-  $scope.loadMore = function() {
-    if ($scope.dataLength == $scope.limit){
-      Par.get({id:$stateParams.id, page: $scope.page, lastId: $scope.lastId})
-      .$promise.then(function(data) {
-        console.log(JSON.stringify(data))
-        $scope.dataLength = data.photos.length
-        $scope.photos = $scope.photos.concat(data.photos)
-        if ($scope.page == 0){$scope.user = data.user}
         if (data.photos.length == $scope.limit) {$scope.lastId = data.photos[$scope.limit-1].id}
         $scope.page += 1
         $scope.$broadcast('scroll.infiniteScrollComplete')
@@ -148,19 +134,14 @@ angular.module('starter.controllers', [])
 .controller('ChangeCtrl', function($scope, $http, $rootScope, $state, $window, $resource, Chats, Post, Photo, Api) {
   $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
   $scope.loadMore = function() {
-    // if ($scope.dataLength == $scope.limit){
       Photo.query({page: $scope.page, lastId: $scope.lastId})
       .$promise.then(function(data) {
         console.log(JSON.stringify(data))
-        // $scope.dataLength = data.length
         $scope.photos = $scope.photos.concat(data)
         $scope.page += 1
-        // if (data.length == $scope.limit) {$scope.lastId = data[$scope.limit-1].id}
         $scope.$broadcast('scroll.infiniteScrollComplete')
       })
-    // }
   }
-
 })
 
 .controller('StrangersIdCtrl', function($scope, $http, $rootScope, $stateParams, $state, $window, $resource, Chats, Post, Photo, Api) {
@@ -172,8 +153,42 @@ angular.module('starter.controllers', [])
     $scope.s_asker_q = data.s_asker_q
     $scope.s_target_q = data.s_target_q
     $scope.partner_q = data.partner_q
-    // user: user, s_asker_q:user.s_asker?(@api_user), s_target_q:user.s_target?(@api_user), partner_q:user.partner?(@api_user)
+    data.user.password_digest == $window.localStorage.token? ($scope.isCurrentUser = true):($scope.isCurrentUser = false)
   })
+  var Asker = $resource($rootScope.baseUrl + '/api/asker/:id')
+  $scope.ask = function() {
+    var ak = new Asker({id:$stateParams.id})
+    ak.$save(function(data) {
+      $scope.s_asker_q = !$scope.s_asker_q
+    })
+  }
+  var Agree = $resource($rootScope.baseUrl + '/api/agree/:id')
+  $scope.agree = function() {
+    var ag = new Agree({id:$stateParams.id})
+    ag.$save(function(data) {
+      $scope.partner_q = !$scope.partner_q
+    })
+  }
+})
+
+.controller('PartnersIdCtrl', function($scope, $http, $state, $rootScope, $stateParams, $window, $resource, Chats, Post, Photo, Api) {
+  var Par = $resource($rootScope.baseUrl + '/api/partners/:id')
+  $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
+  $scope.loadMore = function() {
+    if ($scope.dataLength == $scope.limit){
+      Par.get({id:$stateParams.id, page: $scope.page, lastId: $scope.lastId})
+      .$promise.then(function(data) {
+        console.log(JSON.stringify(data))
+        $scope.dataLength = data.photos.length
+        $scope.photos = $scope.photos.concat(data.photos)
+        if ($scope.page == 0){$scope.user = data.user}
+        if (data.photos.length == $scope.limit) {$scope.lastId = data.photos[$scope.limit-1].id}
+        $scope.page += 1
+        $scope.$broadcast('scroll.infiniteScrollComplete')
+      })
+      // $scope.$broadcast('scroll.infiniteScrollComplete')
+    }
+  }
 })
 
 .controller('MessageCtrl', function($scope, $http, $rootScope,$cordovaCamera,$cordovaCapture, $cordovaImagePicker,$resource,$cordovaInAppBrowser) {

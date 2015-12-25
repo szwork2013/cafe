@@ -5,7 +5,7 @@
       <!-- <ion-item ng-repeat="u in s_askers" class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}"> -->
         <a ng-repeat="u in s_askers" class="item-remove-animate item-avatar item-icon-right button button-assertive button-block" href="#/tab/home/strangers/{{u.id}}">
           <img ng-src="{{u.avatar}}">
-          <p>{{u.name}} is asking you</p>
+          <p>{{u.name}} is asking you, answer here</p>
           <i class="icon ion-chevron-right icon-accessory"></i>
         </a>
       <!-- </ion-item> -->
@@ -14,24 +14,19 @@
   </div>
   <div class="" ng-show="s_targets.length">
     <ion-list>
-      <ion-item ng-repeat="u in s_targets" class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-         <img ng-src="{{u.avatar}}">
-         <h2>{{u.name}} is asking you</h2>
-         <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
+      <a ng-repeat="u in s_targets" class="item-remove-animate item-avatar item-icon-right button button-calm button-block" href="#/tab/home/strangers/{{u.id}}">
+        <img ng-src="{{u.avatar}}">
+        <p>you are asking {{u.name}}, wait for answer</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </a>
     </ion-list>
     <div class="item item-divider"></div>
   </div>
   <div class="" ng-show="partners.length">
     <ion-list>
-      <!-- <ion-item ng-repeat="u in partners" class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{u.avatar}}">
-        <h2>{{u.name}} is your partner</h2>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item> -->
       <a ng-repeat="u in partners" class="item-remove-animate item-avatar item-icon-right button button-calm button-block" href="#/tab/home/partners/{{u.id}}">
         <img ng-src="{{u.avatar}}">
-        <p>{{u.name}} is asking you</p>
+        <p>{{u.name}} is your partner, you can get her/his photos here</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </a>
     </ion-list>
