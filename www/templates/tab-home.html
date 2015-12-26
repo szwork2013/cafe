@@ -1,5 +1,9 @@
 <ion-view hide-nav-bar="true" view-title="Home">
   <ion-content>
+  <div class="item item-avatar">
+    <img src="{{user.avatar}}">
+    <h2>{{user.name}}</h2>
+  </div>
   <div class="" ng-show="s_askers.length">
     <ion-list>
       <!-- <ion-item ng-repeat="u in s_askers" class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}"> -->

@@ -45,10 +45,10 @@ angular.module('starter.controllers', [])
   }
 
   $scope.doSignup = function() {
+    $scope.signupData.avatar = document.getElementById("avatar").src
     var user = new User($scope.signupData)
     user.$save(function(data) {
-      console.log(data.token)
-      // console.log(err);
+      console.log(data.token) // console.log(err);
       if (data.token) {
         $window.localStorage.token = data.token
         $scope.currentUser = Boolean($window.localStorage.token)
@@ -90,7 +90,7 @@ angular.module('starter.controllers', [])
         $scope.dataLength = data.photos.length
         $scope.photos = $scope.photos.concat(data.photos)
         if ($scope.page == 0){$scope.s_askers = data.s_askers; $scope.s_targets = data.s_targets;
-           $scope.partners = data.partners}
+           $scope.partners = data.partners; $scope.user = data.user}
         if (data.photos.length == $scope.limit) {$scope.lastId = data.photos[$scope.limit-1].id}
         $scope.page += 1
         $scope.$broadcast('scroll.infiniteScrollComplete')
@@ -201,93 +201,8 @@ angular.module('starter.controllers', [])
 
 .controller('MessageCtrl', function($scope, $http, $rootScope,$cordovaCamera,$cordovaCapture, $cordovaImagePicker,$resource,$cordovaInAppBrowser) {
 
-  // var Token = $resource('http://localhost:3000/uptoken')
-  var Po = $resource('http://localhost:3000/sina/test')
-  $resource('http://localhost:3000/uptoken').get().$promise.then(function(data) {
-    console.log(data.uptoken)
-    console.log(JSON.stringify(data))
-  })
 })
 
 .controller('AccountCtrl', function($scope,$http,$cordovaCamera,$cordovaCapture) {
-  $scope.settings = {
-    enableFriends: true
-  }
 
 })
-
-// $scope.posts = []
-// $scope.page = 0
-// $scope.lastId = 0
-// $scope.limit = 5
-// $scope.dataLength = $scope.limit
-// $scope.loadMore = function() {
-//   if ($scope.dataLength == $scope.limit){
-//     // $scope.page += 1
-//     Post.query({page: $scope.page, lastId: $scope.lastId})
-//     .$promise.then(function(data) {
-//       console.log(JSON.stringify(data))
-//       $scope.dataLength = data.length
-//       $scope.posts = $scope.posts.concat(data)
-//       //Stop the ion-refresher from spinning
-//       $scope.page += 1
-//       if (data.length == $scope.limit) {$scope.lastId = data[$scope.limit-1].id}
-//       $scope.$broadcast('scroll.infiniteScrollComplete')
-//     })
-//     // $scope.$broadcast('scroll.infiniteScrollComplete')
-//   }
-// }
-//
-// $scope.doRefresh = function() {
-//   // $state.go('tab.home', null, {reload: true})
-//   // $window.location.reload(true)
-//   $state.go($state.current, {}, {reload: true})
-//   $scope.$broadcast('scroll.refreshComplete')
-// }
-
-// $scope.posts = []
-// $scope.isCurrentUser = true
-// $scope.page = 0
-// $scope.lastId = 0
-// $scope.limit = 5
-// $scope.dataLength = $scope.limit
-// $scope.loadMore = function() {
-//   if ($scope.dataLength == $scope.limit) {
-//     // $scope.page++
-//     User.get({id: $stateParams.id, page: $scope.page, lastId: $scope.lastId})
-//     .$promise.then(function(data) {
-//       console.log(JSON.stringify(data))
-//       $scope.dataLength = data.posts.length
-//       if (  $scope.page == 0){
-//         $scope.user = data.user
-//         $scope.foing = data.foing
-//         if ($window.localStorage.token == data.user.password_digest) {
-//           $scope.isCurrentUser = true
-//         } else {
-//           $scope.isCurrentUser = false
-//         }
-//       }
-//       $scope.posts = $scope.posts.concat(data.posts)
-//       if (data.posts.length == $scope.limit) {$scope.lastId = data.posts[$scope.limit-1].id}
-//       $scope.page += 1
-//       //Stop the ion-refresher from spinning
-//       $scope.$broadcast('scroll.infiniteScrollComplete')
-//     })
-//   }
-// }
-//
-// $scope.follow = function() {
-//   var fo = new Follow({id: $stateParams.id})
-//   fo.$save(function(data) {
-//     console.log(JSON.stringify(data))
-//     $scope.foing = !$scope.foing
-//   })
-// }
-//
-// $scope.unfollow = function() {
-//   Follow.get({id: $stateParams.id})
-//   .$promise.then(function(data) {
-//     console.log(JSON.stringify(data))
-//     $scope.foing = !$scope.foing
-//   })
-// }
