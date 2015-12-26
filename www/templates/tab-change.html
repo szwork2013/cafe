@@ -2,7 +2,7 @@
   <ion-content>
     <p> change list </p>
     <div ng-repeat="p in photos" style="width:33.33vw; height:33.33vw; padding:0.5px; float:left;">
-      <a href="#/tab/change/strangers/{{p.user.id}}"><img src="{{p.url}}" alt="Car"  style="width:100%; height:100%;" /> </a>
+      <a href="#/tab/change/strangers/{{p.user.id}}" style="padding:0.1px;"><img src="{{p.url}}" alt="Car" style="width:100%; height:auto;" /> </a>
     </div>
     <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()"></ion-infinite-scroll>
   </ion-content>

@@ -8,10 +8,9 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngResource','ngCordova','ngFileUpload']) //'firebase',
 
 .run(function($ionicPlatform, $http, $window, $rootScope, $state, $resource) {
-
-  $rootScope.baseUrl = "http://localhost:3000"
+  // $rootScope.baseUrl = "http://localhost:3000"
   //  $rootScope.baseUrl = "http://162.243.143.15"
-  //  $rootScope.baseUrl = "http://changiif.com"
+   $rootScope.baseUrl = "http://changiif.com"
   $resource('http://changiif.com/uptoken').get().$promise.then(function(data) {
     $window.localStorage.qiniuToken = data.uptoken
     console.log('qiniuT  ' + $window.localStorage.qiniuToken)
@@ -119,13 +118,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     })
 
-  .state('tab.write', {
-    url: '/write',
+  .state('tab.uphoto', {
+    url: '/uphoto',
     cache: false,
     views: {
-      'tab-write': {
-        templateUrl: 'templates/tab-write.html',
-        controller: 'WriteCtrl'
+      'tab-uphoto': {
+        templateUrl: 'templates/tab-uphoto.html',
+        controller: 'UphotoCtrl'
       }
     }
   })

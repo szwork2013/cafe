@@ -98,9 +98,10 @@ angular.module('starter.controllers', [])
       // $scope.$broadcast('scroll.infiniteScrollComplete')
     }
   }
+  $scope.loadMore()
 })
 
-.controller('WriteCtrl', function($scope, $http, $state, $rootScope, Qiniu, Post, Photo, Api) {
+.controller('UphotoCtrl', function($scope, $http, $state, $rootScope, Qiniu, Post, Photo, Api) {
   $scope.temfile = ""
   $scope.temfile = function(f) {
     $scope.temfile = f
@@ -189,6 +190,7 @@ angular.module('starter.controllers', [])
       // $scope.$broadcast('scroll.infiniteScrollComplete')
     }
   }
+  $scope.loadMore()
   $scope.partner_q = true
   var Unagree = $resource($rootScope.baseUrl + '/api/unagree/:id')
   $scope.unagree = function() {

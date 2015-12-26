@@ -4,20 +4,31 @@
       <img src="{{user.avatar}}">
       <h2>{{user.name}}</h2>
     </div>
-    <div ng-hide="isCurrentUser">
-      <a ng-show="!s_asker_q && !partner_q && !s_target_q" ng-click="ask()" class="button button-assertive">ask</a>
-      <a ng-show="s_asker_q" class="button button-positive">you are asking he/she, wait for answer </a>
-      <a ng-show="s_target_q" class="button button-positive">he/she is asking you, click to agree </a>
-      <a ng-show="partner_q" class="button button-positive">he/she is your partner</a>
+    <div class="" style="margin-left:auto; margin-right:auto; width:60vw;">
+      <div ng-hide="isCurrentUser">
+        <a ng-show="!s_asker_q && !partner_q && !s_target_q" ng-click="ask()" class="button button-assertive button-block">ask</a>
+        <h5 ng-show="s_asker_q" >you are asking he/she, wait for answer </h5>
+        <h5 ng-show="s_target_q" >he/she is asking you, click to agree </h5>
+        <h5 ng-show="partner_q" >he/she is your partner</h5>
+      </div>
+      <div class="" ng-show="isCurrentUser">
+        <h3>your profile here</h3>
+      </div>
     </div>
-    <div class="" ng-show="isCurrentUser">
-      <h2>your profile here</h2>
+    <div class="padding">
+      swipe to see more
+      <i class="icon ion-chevron-right icon-accessory"></i>
     </div>
-    <div class="">
+    <ion-scroll direction="x" zooming="true" min-zoom="0.5" paging="true" style="overflow:scroll; overflow-y:hidden; white-space: nowrap; padding:5px;">
+      <a ng-repeat="p in photos" style="">
+        <img src="{{p.url}}" style="width: auto; max-height:320px;" >
+      </a>
+    </ion-scroll>
+    <!-- <div class="">
       <a ng-repeat="p in photos" style="padding:0.5px;">
         <img src="{{p.url}}" alt="Car"  style="width:300px; height:300px;" />
       </a>
-    </div>
+    </div> -->
     <!-- <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()"></ion-infinite-scroll> -->
   </ion-content>
 </ion-view>

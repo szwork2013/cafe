@@ -4,13 +4,24 @@
       <img src="{{user.avatar}}">
       <h2>{{user.name}}</h2>
     </div>
-    <a ng-show="!partner_q && !s_asker_q" ng-click="agree()" class="button button-assertive">agree</a>
-    <a ng-show="partner_q" class="button button-calm">you two are partner now</a>
-    <div class="">
+    <div class="" style="margin-left:auto; margin-right:auto; width:60vw;">
+      <a ng-show="!partner_q && !s_asker_q" ng-click="agree()" class="button button-assertive button-block">agree</a>
+      <a ng-show="partner_q" class="button button-calm button-block">you two are partner now</a>
+    </div>
+    <div class="padding">
+      swipe to see more
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </div>
+    <ion-scroll direction="x" zooming="true" min-zoom="0.5" paging="true" style="overflow:scroll; overflow-y:hidden; white-space: nowrap; padding:5px;">
+      <a ng-repeat="p in photos" style="">
+        <img src="{{p.url}}" style="width: auto; max-height:320px;" >
+      </a>
+    </ion-scroll>
+    <!-- <div class="">
       <a ng-repeat="p in photos" style="padding:0.5px;">
         <img src="{{p.url}}" alt="Car"  style="width:300px; height:300px;" />
       </a>
-    </div>
+    </div> -->
     <!-- <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()"></ion-infinite-scroll> -->
   </ion-content>
 </ion-view>
