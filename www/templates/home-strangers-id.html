@@ -4,7 +4,7 @@
       <img src="{{user.avatar}}">
       <h2>{{user.name}}</h2>
     </div>
-    <a ng-show="!partner_q" ng-click="agree()" class="button button-assertive">agree</a>
+    <a ng-show="!partner_q && !s_asker_q" ng-click="agree()" class="button button-assertive">agree</a>
     <a ng-show="partner_q" class="button button-calm">you two are partner now</a>
     <div class="">
       <a ng-repeat="p in photos" style="padding:0.5px;">

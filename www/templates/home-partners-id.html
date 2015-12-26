@@ -4,6 +4,8 @@
       <img src="{{user.avatar}}">
       <h2>{{user.name}}</h2>
     </div>
+    <a ng-show="partner_q" ng-click="unagree()" class="button button-assertive">cancel relationship</a>
+    <a ng-show="!partner_q" class="button button-calm">canceled, you two have no relationship now! </a>
     <div class="">
       <a ng-repeat="p in photos" style="padding:0.5px;">
         <img src="{{p.url}}" alt="Car"  style="width:300px; height:300px;" />

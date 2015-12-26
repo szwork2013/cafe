@@ -189,6 +189,14 @@ angular.module('starter.controllers', [])
       // $scope.$broadcast('scroll.infiniteScrollComplete')
     }
   }
+  $scope.partner_q = true
+  var Unagree = $resource($rootScope.baseUrl + '/api/unagree/:id')
+  $scope.unagree = function() {
+    var unag = new Unagree({id:$stateParams.id})
+    unag.$save(function(data) {
+      $scope.partner_q = !$scope.partner_q
+    })
+  }
 })
 
 .controller('MessageCtrl', function($scope, $http, $rootScope,$cordovaCamera,$cordovaCapture, $cordovaImagePicker,$resource,$cordovaInAppBrowser) {

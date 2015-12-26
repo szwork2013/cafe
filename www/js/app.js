@@ -161,7 +161,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   })
   .state('tab.home-partners-id', {
     url: '/home/partners/:id',
-    // cache: false,
+    cache: false,
     views: {
       'tab-home': {
         templateUrl: 'templates/home-partners-id.html',

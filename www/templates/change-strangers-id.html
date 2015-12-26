@@ -5,10 +5,13 @@
       <h2>{{user.name}}</h2>
     </div>
     <div ng-hide="isCurrentUser">
-      <a ng-show="!s_asker_q && !partner_q" ng-click="ask()" class="button button-assertive">ask</a>
+      <a ng-show="!s_asker_q && !partner_q && !s_target_q" ng-click="ask()" class="button button-assertive">ask</a>
       <a ng-show="s_asker_q" class="button button-positive">you are asking he/she, wait for answer </a>
-      <!-- <a ng-show="s_target_q" class="button button-positive">he/she is asking you, click to agree </a> -->
+      <a ng-show="s_target_q" class="button button-positive">he/she is asking you, click to agree </a>
       <a ng-show="partner_q" class="button button-positive">he/she is your partner</a>
+    </div>
+    <div class="" ng-show="isCurrentUser">
+      <h2>your profile here</h2>
     </div>
     <div class="">
       <a ng-repeat="p in photos" style="padding:0.5px;">
