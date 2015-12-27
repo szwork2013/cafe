@@ -21,7 +21,7 @@
         <a ng-repeat="u in s_targets" class="item item-avatar item-icon-right" href="#/tab/home/strangers/{{u.id}}">
           <img ng-src="{{u.avatar}}">
           <h2>{{u.name}}</h2>
-          <p>wait for answer</p>
+          <p>wait for {{u.name}}'s answer</p>
           <i class="icon ion-chevron-right icon-accessory"></i>
         </a>
       </div>
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="padding">
-      swipe to see more
+      your album here, swipe to see more
       <i class="icon ion-chevron-right icon-accessory"></i>
     </div>
     <ion-scroll direction="x" zooming="true" min-zoom="0.5" paging="true" class="album-ion-scroll">

@@ -147,6 +147,7 @@ angular.module('starter.controllers', [])
 
 .controller('StrangersIdCtrl', function($scope, $http, $rootScope, $stateParams, $state, $window, $resource, Chats, Post, Photo, Api) {
   var Str = $resource($rootScope.baseUrl + '/api/strangers/:id')
+  $scope.s_asker_q = true
   Str.get({id: $stateParams.id}).$promise.then(function(data) {
     console.log(JSON.stringify(data))
     $scope.photos = data.photos

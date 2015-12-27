@@ -7,12 +7,12 @@
     <div class="" style="margin-left:auto; margin-right:auto; width:60vw;">
       <div ng-hide="isCurrentUser">
         <a ng-show="!s_asker_q && !partner_q && !s_target_q" ng-click="ask()" class="button button-assertive button-block">ask</a>
-        <h5 ng-show="s_asker_q" >you are asking he/she, wait for answer </h5>
-        <h5 ng-show="s_target_q" >he/she is asking you, click to agree </h5>
-        <h5 ng-show="partner_q" >he/she is your partner</h5>
+        <h5 ng-show="s_asker_q" > wait for {{user.name}}'s answer </h5>
+        <h5 ng-show="s_target_q" >is asking you</h5>
+        <h5 ng-show="partner_q" >is your partner</h5>
       </div>
       <div class="" ng-show="isCurrentUser">
-        <h3>your profile here</h3>
+        <h5>your album here</h5>
       </div>
     </div>
     <div class="padding">
