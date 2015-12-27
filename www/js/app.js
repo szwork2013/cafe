@@ -107,17 +107,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     })
 
-    .state('tab.home-user-id', {
-      url: '/home/users/:id',
-      // cache: false,
-      views: {
-        'tab-home': {
-          templateUrl: 'templates/home-user-id.html',
-          controller: 'UserIdCtrl'
-        }
-      }
-    })
-
   .state('tab.uphoto', {
     url: '/uphoto',
     cache: false,
@@ -168,6 +157,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     }
   })
+  .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-account.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+
   .state('tab.message', {
     url: '/message',
     // cache: false,
@@ -181,7 +180,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   })
   .state('tab.message.mes1', {
     url: '/mes1',
-    // cache: false,
+    cache: false,
     views: {
       'message-mes@tab.message': {
         templateUrl: 'templates/mes1.html'
@@ -199,15 +198,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     }
   })
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');

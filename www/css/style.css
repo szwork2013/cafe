@@ -1,1 +1,15 @@
 /* Empty. Add your own CSS if you like */
+.album-hori-3 {
+width:33.33vw;
+height:33.33vw;
+padding:0.5px;
+float:left;
+}
+
+.album-ion-scroll {
+  overflow:scroll;
+  overflow-y:hidden;
+  white-space:
+  nowrap;
+  padding:5px;
+}

@@ -1,55 +1,64 @@
 <ion-view hide-nav-bar="true" view-title="Home">
   <ion-content class="padding" overflow-scroll="true">
-  <div class="item item-avatar">
-    <img src="{{user.avatar}}">
-    <h2>{{user.name}}</h2>
-  </div>
-  <div class="" ng-show="s_askers.length">
-    <a ng-repeat="u in s_askers" class="item-remove-animate item-avatar item-icon-right button button-assertive button-block button-outline" href="#/tab/home/strangers/{{u.id}}">
-      <img ng-src="{{u.avatar}}">
-      <h3>{{u.name}} asking</h3>
-      <i class="icon ion-chevron-right icon-accessory"></i>
-    </a>
-    <div class="item item-divider"></div>
-  </div>
-  <div class="" ng-show="s_targets.length">
-    <a ng-repeat="u in s_targets" class="item-remove-animate item-avatar item-icon-right button button-calm button-block button-outline" href="#/tab/home/strangers/{{u.id}}">
-      <img ng-src="{{u.avatar}}">
-      <h3>asking {{u.name}}</h3>
-      <i class="icon ion-chevron-right icon-accessory"></i>
-    </a>
-    <div class="item item-divider"></div>
-  </div>
-  <div class="" ng-show="partners.length">
-    <a ng-repeat="u in partners" class="item-remove-animate item-avatar item-icon-right button button-balanced button-block button-outline" href="#/tab/home/partners/{{u.id}}">
-      <img ng-src="{{u.avatar}}">
-      <h3>{{u.name}} your partner</h3>
-      <i class="icon ion-chevron-right icon-accessory"></i>
-    </a>
-    <div class="item item-divider"></div>
-  </div>
-  <div class="padding">
-    swipe to see more
-    <i class="icon ion-chevron-right icon-accessory"></i>
-  </div>
-  <ion-scroll direction="x" zooming="true" min-zoom="0.5" paging="true" style="overflow:scroll; overflow-y:hidden; white-space: nowrap; padding:5px;">
-    <a ng-repeat="p in photos" style="">
-      <img src="{{p.url}}" style="width: auto; max-height:320px;" >
-    </a>
-    <div class="" style="display:inline; width: 300px; height: 300px;padding:10px;">
-      <button ng-show="dataLength == limit" ng-click="loadMore()" class="button button-balanced" style="position:absolute;bottom:200px;">load more ... </button>
-      <button ng-hide="dataLength == limit" class="button button-stable" style="position:absolute;bottom:200px;">no more</button>
+    <div class="item item-avatar">
+      <img src="{{user.avatar}}">
+      <h2>{{user.name}}</h2>
     </div>
-  </ion-scroll>
+    <div class="" ng-show="s_askers.length">
+      <div class="item item-divider">people who are asking for you</div>
+      <div class="list">
+        <a ng-repeat="u in s_askers" class="item item-avatar item-icon-right" href="#/tab/home/strangers/{{u.id}}">
+          <img ng-src="{{u.avatar}}">
+          <h2>{{u.name}}</h2>
+          <p>is asking you,click to answer</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+      </div>
+    </div>
+    <div class="" ng-show="s_targets.length">
+      <div class="item item-divider">people you are asking for</div>
+      <div class="list">
+        <a ng-repeat="u in s_targets" class="item item-avatar item-icon-right" href="#/tab/home/strangers/{{u.id}}">
+          <img ng-src="{{u.avatar}}">
+          <h2>{{u.name}}</h2>
+          <p>wait for answer</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+      </div>
+    </div>
+    <div class="" ng-show="partners.length">
+      <div class="item item-divider">your partners</div>
+      <div class="list">
+        <a ng-repeat="u in partners" class="item item-avatar item-icon-right" href="#/tab/home/partners/{{u.id}}">
+          <img ng-src="{{u.avatar}}">
+          <h2>{{u.name}}</h2>
+          <p>is your partner,click to see the album</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+      </div>
+    </div>
+    <div class="padding">
+      swipe to see more
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </div>
+    <ion-scroll direction="x" zooming="true" min-zoom="0.5" paging="true" class="album-ion-scroll">
+      <a ng-repeat="p in photos" style="">
+        <img src="{{p.url}}" style="width: auto; max-height:320px;" >
+      </a>
+      <div class="" style="display:inline; width: 300px; height: 300px;padding:10px;">
+        <button ng-show="dataLength == limit" ng-click="loadMore()" class="button button-balanced" style="position:absolute;bottom:200px;">load more ... </button>
+        <button ng-hide="dataLength == limit" class="button button-stable" style="position:absolute;bottom:200px;">no more</button>
+      </div>
+    </ion-scroll>
 
-  <!-- <div ng-repeat="p in photos" style="width:33.33vw; height:33.33vw; padding:0.5px; float:left;">
+    <!-- <div ng-repeat="p in photos" style="width:33.33vw; height:33.33vw; padding:0.5px; float:left;">
     <img src="{{p.url}}" alt="Car"  style="width:100%; height:100%;" />
   </div> -->
   <!-- <div class="" style="margin-left:auto;margin-right:auto;width:100vw;"> -->
-    <!-- <div ng-repeat="p in photos" style="float:left; padding:0.5px;">
-      <img src="{{p.url}}" alt="Car" style="width:300px; height:300px;" />
-    </div> -->
-  <!-- </div> -->
-  <!-- <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()"></ion-infinite-scroll> -->
+  <!-- <div ng-repeat="p in photos" style="float:left; padding:0.5px;">
+  <img src="{{p.url}}" alt="Car" style="width:300px; height:300px;" />
+</div> -->
+<!-- </div> -->
+<!-- <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()"></ion-infinite-scroll> -->
 </ion-content>
 </ion-view>
