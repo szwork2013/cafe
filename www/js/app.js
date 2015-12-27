@@ -129,7 +129,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   })
   .state('tab.change-strangers-id', {
     url: '/change/strangers/:id',
-    // cache: false,
+    cache: false,
     views: {
       'tab-change': {
         templateUrl: 'templates/change-strangers-id.html',
@@ -139,7 +139,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   })
   .state('tab.home-strangers-id', {
     url: '/home/strangers/:id',
-    // cache: false,
+    cache: false,
     views: {
       'tab-home': {
         templateUrl: 'templates/home-strangers-id.html',

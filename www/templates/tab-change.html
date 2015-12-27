@@ -1,6 +1,5 @@
-<ion-view view-title="Change">
-  <ion-content>
-    <p> change list </p>
+<ion-view hide-nav-bar="true" view-title="Change">
+  <ion-content style="padding-top:20px;">
     <div ng-repeat="p in photos" class="album-hori-3">
       <a href="#/tab/change/strangers/{{p.user.id}}" style="padding:0.1px;"><img src="{{p.url}}" alt="Car" style="width:100%; height:auto;" /> </a>
     </div>
