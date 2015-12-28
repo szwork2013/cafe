@@ -41,7 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   // RestangularProvider.setBaseUrl("http://162.243.143.15/api")
   // RestangularProvider.setBaseUrl("http://localhost:3000/api")
   $ionicConfigProvider.tabs.position("bottom") //Places them at the bottom for all OS
-   $ionicConfigProvider.views.swipeBackEnabled(false)
+  $ionicConfigProvider.views.swipeBackEnabled(false)
+  $ionicConfigProvider.views.forwardCache(true)
   // $ionicConfigProvider.tabs.style("standard"); //Makes them all look the same across all OS
   $stateProvider
   // setup an abstract state for the tabs directive
@@ -98,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   // Each tab has its own nav history stack:
     .state('tab.home', {
       url: '/home',
-      cache: false,
+      // cache: false,
       views: {
         'tab-home': {
           templateUrl: 'templates/tab-home.html',

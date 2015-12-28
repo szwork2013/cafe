@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
   $scope.loadMore()
 })
 
-.controller('UphotoCtrl', function($scope, $http, $state, $rootScope, Qiniu, Post, Photo, Api) {
+.controller('UphotoCtrl', function($scope, $http, $state, $rootScope,$ionicHistory, Qiniu, Post, Photo, Api) {
   $scope.temfile = ""
   $scope.temfile = function(f) {
     $scope.temfile = f
@@ -114,7 +114,9 @@ angular.module('starter.controllers', [])
       // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z
       var ph = new Photo({key: resp.data.key})
       ph.$save(function(data) {
-          $state.go('tab.home', null, {reload: true})
+        $ionicHistory.clearCache().then(function(){
+          $state.go('tab.home', null, { reload: true})
+        })
           // console.log(data.suc)
       })
     }, function (resp) {
