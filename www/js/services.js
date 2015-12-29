@@ -30,6 +30,19 @@ angular.module('starter.services', [])
         url: "http://upload.qiniu.com",
         data: {file: f, key: new Date(), token: $window.localStorage.qiniuToken}
       })
+    },
+    ajaxUp: function(bs64, cb) {
+      var url = "http://up.qiniu.com/putb64/-1"
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange=function(){
+          if (xhr.readyState==4){
+            cb(xhr.responseText)  // console.log(xhr.responseText); //{"hash":"FqYjXryPN8mMUtZUdF9szNcTa8xc","key":"FqYjXryPN8mMUtZUdF9szNcTa8xc"}
+          }
+      }
+      xhr.open("POST", url, true)
+      xhr.setRequestHeader("Content-Type", "application/octet-stream")
+      xhr.setRequestHeader("Authorization", "UpToken " + $window.localStorage.qiniuToken)
+      xhr.send(bs64)
     }
   }
 })

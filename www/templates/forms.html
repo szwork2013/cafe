@@ -1,7 +1,9 @@
 <ion-view hide-nav-bar="true" view-title="Forms">
   <ion-content style="padding-top:20px;">
-    <div collection-repeat="p in photos" class="album-hori-3">
-      <a href=""><img ng-src="{{p.url}}" alt="Car"  style="width:100%; height:auto;" /> </a>
+    <div style="margin-left:auto;margin-right:auto;max-width:700px;">
+      <div ng-repeat="p in photos" class="album-hori-3" >
+        <a href=""><img ng-src="{{p.url}}" alt="Car"  width="100%" height="auto" /> </a>
+      </div>
     </div>
     <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()" distance="50%"></ion-infinite-scroll>
   </ion-content>

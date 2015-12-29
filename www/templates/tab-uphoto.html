@@ -1,14 +1,22 @@
 <ion-view hide-nav-bar="true" view-title="Uphoto">
   <ion-content class="padding" style="padding-top:20px;">
-    <div >
-      <button ngf-select="temfile(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
-      accept="image/*"  ngf-resize="{width: 500, height: 500, quality: 0.8}" class="button button-assertive button-block" >
-      click to choose photo
-    </button>
+  <div style="margin-left:auto; margin-right:auto; max-width: 500px;">
+    <!-- <img id="avatar" ngf-no-object-url="true" ngf-src="file" ngf-resize="{width: 50, height: 50, quality: 0.8}" /> -->
+    <img id="photo" ngf-no-object-url="true" ngf-resize="{width: 700, height: 700, quality: 0.9}" ngf-src="temfile" width="100%" height="auto" />
+    <div ng-repeat="f in temfiles track by $index" >
+      <img  ngf-src="f" width="100%" height="auto" />
+    </div>
   </div>
-  <div class="">
-    <img ngf-src="file" ngf-resize="{width: 400, height: 400, quality: 0.9}" />
+  <div ng-show="uppercent" class="item range range-assertive">
+    <input type="range" ng-model="uppercent" name="volume" min="0" max="100" value="1">
   </div>
+  <div >
+   <button ngf-select  ngf-change="listFiles(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+     accept="image/*"  ngf-resize="{width: 700, height: 700, quality: 0.9}" class="button button-balanced button-block" >
+     click to choose photo
+   </button>
+  </div>
+  <button ng-click="refresh()" class="button button-assertive button-small button-block"> reselect photo </button>
   <button ng-show="file" ng-click="upPhoto()" class="button button-calm button-block"> submit photo </button>
 </ion-content>
 </ion-view>

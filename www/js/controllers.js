@@ -101,30 +101,32 @@ angular.module('starter.controllers', [])
   $scope.loadMore()
 })
 
-.controller('UphotoCtrl', function($scope, $http, $state, $rootScope,$ionicHistory, Qiniu, Post, Photo, Api) {
-  $scope.temfile = ""
-  $scope.temfile = function(f) {
-    $scope.temfile = f
-    console.log($scope.temfile)
-    // console.log($scope.temfile.$ngfName)
+.controller('UphotoCtrl', function($scope, $http, $state, $rootScope, $window, Qiniu, Post, Photo, Api) {
+  $scope.temfiles = []
+  $scope.listFiles = function(f) {
+    // $scope.temfile = f // console.log($scope.temfile)// console.log($scope.temfile.$ngfName)
+    $scope.temfiles.push(f)
+  }
+  $scope.refresh = function() {
+    $state.go($state.current, {}, {reload: true})
   }
   $scope.upPhoto = function() {
-    Qiniu.ngFileUp($scope.temfile).then(function (resp) {
-      console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data));
-      // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z
-      var ph = new Photo({key: resp.data.key})
-      ph.$save(function(data) {
-        $ionicHistory.clearCache().then(function(){
-          $state.go('tab.home', null, { reload: true})
+    // var count = 0
+    // $scope.temfiles.forEach(function(file) {
+      Qiniu.ngFileUp($scope.temfiles[0]).then(function (resp) {
+        // console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
+        // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z
+        var ph = new Photo({key: resp.data.key})
+        ph.$save(function(data) {
+          // count += 1  if (count == $scope.temfiles.length) {
+          $window.location.reload()
         })
-          // console.log(data.suc)
+      }, function (resp) {
+        console.log('Error status: ' + resp.status)
+      }, function (evt) {
+        $scope.uppercent = parseInt(100.0 * evt.loaded / evt.total)
+        // console.log('progress: ' + $scope.uppercent + '% ' + evt.config.data.file.name)
       })
-    }, function (resp) {
-      console.log('Error status: ' + resp.status);
-    }, function (evt) {
-      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-    })
   }
 })
 
