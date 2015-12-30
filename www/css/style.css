@@ -1,12 +1,16 @@
 /* Empty. Add your own CSS if you like */
 .album-hori-3 {
 width:33.33%;
-height:auto;
-padding:0.5px;
+height:0;
+padding-bottom:33.33%;
+overflow:hidden;
+overflow-y:hidden;
+overflow-x:hidden;
 float:left;
 }
 /*height:33vw;*/
-
+/*height:auto;
+padding:0.3px;*/
 .album-ion-scroll {
   overflow:scroll;
   overflow-y:hidden;

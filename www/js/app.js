@@ -57,15 +57,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     }
   })
-  .state('forms-user-id', {
-    url: "/forms/users/:id",
-    views: {
-      '@': {
-        templateUrl: 'templates/forms-user-id.html',
-        controller: 'FormsCtrl'
-      }
-    }
-  })
 
   .state('login', {
     url: '/login',
@@ -99,7 +90,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   // Each tab has its own nav history stack:
     .state('tab.home', {
       url: '/home',
-      // cache: false,
+      cache: false,
       views: {
         'tab-home': {
           templateUrl: 'templates/tab-home.html',
@@ -130,7 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   })
   .state('tab.change-strangers-id', {
     url: '/change/strangers/:id',
-    cache: false,
+    // cache: false,
     views: {
       'tab-change': {
         templateUrl: 'templates/change-strangers-id.html',

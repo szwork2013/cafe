@@ -21,10 +21,10 @@
         </label>
         <label class="item">
           <button ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
-          accept="image/*"  ngf-resize="{width: 50, height: 50, quality: 0.8}" class="button button-assertive button-small" >
+          accept="image/*"  ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" class="button button-assertive button-small" >
           click to set avatar
           </button>
-          <img id="avatar" ngf-no-object-url="true" ngf-src="file" ngf-resize="{width: 50, height: 50, quality: 0.8}" />
+          <img id="avatar" ngf-no-object-url="true" ngf-src="file" ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" />
         </label>
       <label class="item">
         <button class="button button-block button-positive" type="submit">sign up</button>

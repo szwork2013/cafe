@@ -119,7 +119,7 @@ angular.module('starter.controllers', [])
         var ph = new Photo({key: resp.data.key})
         ph.$save(function(data) {
           // count += 1  if (count == $scope.temfiles.length) {
-          $window.location.reload()
+          $state.go('tab.home', {}, {reload: true}) //$window.location.reload()
         })
       }, function (resp) {
         console.log('Error status: ' + resp.status)
