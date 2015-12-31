@@ -20,7 +20,7 @@
           <input type="password" ng-model="signupData.password_confirmation" >
         </label>
         <label class="item">
-          <button ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+          <button ngf-select="getFile(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
           accept="image/*"  ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" class="button button-assertive button-small" >
           click to set avatar
           </button>

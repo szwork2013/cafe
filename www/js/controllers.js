@@ -19,9 +19,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Chats, Photo, Api) {
-  $scope.chats = Chats.all()
-  $scope.chat = Chats.get($stateParams.id)
+.controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Chats, Photo, Qiniu, Api) {
   $scope.loginData = {email: "gsp@gmail.com", password: "191954"}
   $scope.signupData = {name:'gsp'}
   $rootScope.loginErr = ''
@@ -43,25 +41,26 @@ angular.module('starter.controllers', [])
       }
     })
   }
-
+  $scope.getFile = function(f) {
+    $scope.temfile = f
+  }
   $scope.doSignup = function() {
-    $scope.signupData.avatar = document.getElementById("avatar").src
-    var user = new User($scope.signupData)
-    user.$save(function(data) {
-      console.log(data.token) // console.log(err);
-      if (data.token) {
-        $window.localStorage.token = data.token
-        $scope.currentUser = Boolean($window.localStorage.token)
-        $http.defaults.headers.common['Authorization'] = "Token token=" + data.token
-        console.log($window.localStorage.token)
-        // $scope.closeForms()
-        $state.go('tab.home', {}, {reload: true})
-      } else {
-        // $scope.modal.show()
-        console.log(data.err)
-        $rootScope.signupErr = data.err
-        // $scope.showForms()
-      }
+    Qiniu.ngFileUp($scope.temfile).then(function (resp) {
+      // console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
+      $scope.signupData.avatar = "http://7xj5ck.com1.z0.glb.clouddn.com/" + resp.data.key
+      var user = new User($scope.signupData)
+      user.$save(function(data) {
+        if (data.token) {
+          $window.localStorage.token = data.token
+          $scope.currentUser = Boolean($window.localStorage.token)
+          $http.defaults.headers.common['Authorization'] = "Token token=" + data.token
+          console.log($window.localStorage.token)
+          $state.go('tab.home', {}, {reload: true})
+        } else {
+          console.log(data.err)
+          $rootScope.signupErr = data.err
+        }
+      })
     })
   }
 
