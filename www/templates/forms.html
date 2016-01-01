@@ -1,8 +1,8 @@
 <ion-view hide-nav-bar="true" view-title="Forms">
   <ion-content style="padding-top:20px;">
-    <div style="margin-left:auto;margin-right:auto;max-width:550px;">
-      <div ng-repeat="p in photos" class="" style="width:33.33%; height: 160px; float:left;">
-        <a href=""><img ng-src="{{p.url}}" alt="Car"  width="100%" height="100%" /> </a>
+    <div id="fcontainer" style="margin-left:auto;margin-right:auto;max-width:700px;">
+      <div ng-repeat="p in photos" fsquare style="">
+        <a href="#"> <img ng-src="{{p.url}}" alt='' width="100%"  height="100%" style="" class="" /></a>
       </div>
     </div>
     <ion-infinite-scroll ng-if="dataLength == limit" on-infinite="loadMore()" distance="50%"></ion-infinite-scroll>

@@ -4,12 +4,12 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js ,'ngIOS9UIWebViewPatch'
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngResource','ngCordova','ngFileUpload']) //'firebase',
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives', 'ngResource','ngCordova','ngFileUpload']) //'firebase',
 
 .run(function($ionicPlatform, $http, $window, $rootScope, $state, $resource) {
   // $rootScope.baseUrl = "http://localhost:3000"
   //  $rootScope.baseUrl = "http://162.243.143.15"
-   $rootScope.baseUrl = "http://changiif.com"
+  $rootScope.baseUrl = "http://changiif.com"
   $resource('http://changiif.com/uptoken').get().$promise.then(function(data) {
     $window.localStorage.qiniuToken = data.uptoken
     console.log('qiniuT  ' + $window.localStorage.qiniuToken)
@@ -30,6 +30,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     }
   })
 })
+
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider,$ionicConfigProvider) {
   // Ionic uses AngularUI Router which uses the concept of states
@@ -86,16 +87,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   })
 
   // Each tab has its own nav history stack:
-    .state('tab.home', {
-      url: '/home',
-      cache: false,
-      views: {
-        'tab-home': {
-          templateUrl: 'templates/tab-home.html',
-          controller: 'HomeCtrl'
-        }
+  .state('tab.home', {
+    url: '/home',
+    cache: false,
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/tab-home.html',
+        controller: 'HomeCtrl'
       }
-    })
+    }
+  })
 
   .state('tab.uphoto', {
     url: '/uphoto',

@@ -8,6 +8,11 @@ overflow-y:hidden;
 overflow-x:hidden;
 float:left;
 }
+#container {
+  margin-left:auto;
+  margin-right:auto;
+  max-width:700px;
+}
 /*height:33vw;*/
 /*height:auto;
 padding:0.3px;*/
@@ -18,9 +23,22 @@ padding:0.3px;*/
   nowrap;
   padding:5px;
 }
-
+/*.imgcontainer {
+  width:33.33%;
+  float: left;
+}*/
 .img-scale-half {
   transform: scale(0.5, 0.5);
 -ms-transform: scale(0.5, 0.5);
 -webkit-transform: scale(0.5, 0.5);
+}
+.square{
+  min-width: 100%;
+  min-height: 100%;
+  margin: auto;
+  position: absolute;
+  top: -100%;
+  right: -100%;
+  bottom: -100%;
+  left: -100%;
 }
