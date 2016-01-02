@@ -16,10 +16,16 @@ angular.module('starter.controllers', [])
     $rootScope.signupErr = ''
     $state.go('forms', {}, {reload: true})
   }
+  $scope.reload =function() {
+    $window.location.reload()
+  }
 
 })
 
 .controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Chats, Photo, Qiniu, Api) {
+  $scope.reload =function() {
+    $window.location.reload()
+  }
   $scope.loginData = {email: "gsp@gmail.com", password: "191954"}
   $scope.signupData = {name:'gsp'}
   $rootScope.loginErr = ''
@@ -146,6 +152,7 @@ angular.module('starter.controllers', [])
         $scope.$broadcast('scroll.infiniteScrollComplete')
       })
   }
+
 })
 
 .controller('StrangersIdCtrl', function($scope, $http, $rootScope, $stateParams, $state, $window, $resource, Chats, Post, Photo, Api) {
