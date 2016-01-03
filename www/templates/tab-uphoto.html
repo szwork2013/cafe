@@ -11,12 +11,13 @@
     <input type="range" ng-model="uppercent" name="volume" min="0" max="100" value="1">
   </div>
   <div >
-   <button ngf-select  ngf-change="listFiles(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
-     accept="image/*"  ngf-resize="{width: 700, height: 700, quality: 0.9}" class="button button-balanced button-block" >
+   <button ng-hide="file" ngf-select  ngf-change="listFiles(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+     accept="image/*"  ngf-resize="{width: 700, height: 700, quality: 0.9}" class="button button-stable button-block" >
      click to choose photo
+     <i class="icon ion-images"></i>
    </button>
   </div>
-  <button ng-click="refresh()" class="button button-assertive button-small button-block"> reselect photo </button>
+  <button ng-show="file" ng-click="refresh()" class="button button-assertive"> reselect photo </button>
   <button ng-show="file" ng-click="upPhoto()" class="button button-calm button-block"> submit photo </button>
 </ion-content>
 </ion-view>
