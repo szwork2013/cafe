@@ -7,9 +7,9 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives', 'ngResource','ngCordova','ngFileUpload']) //'firebase',
 
 .run(function($ionicPlatform, $http, $window, $rootScope, $state, $resource) {
-  // $rootScope.baseUrl = "http://localhost:3000"
+  $rootScope.baseUrl = "http://localhost:3000"
   //  $rootScope.baseUrl = "http://162.243.143.15"
-  $rootScope.baseUrl = "http://changiif.com"
+  // $rootScope.baseUrl = "http://changiif.com"
   $resource('http://changiif.com/uptoken').get().$promise.then(function(data) {
     $window.localStorage.qiniuToken = data.uptoken
     console.log('qiniuT  ' + $window.localStorage.qiniuToken)
@@ -118,36 +118,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
-  .state('tab.change-strangers-id', {
-    url: '/change/strangers/:id',
+  .state('tab.change-users-id', {
+    url: '/change/users/:id',
     // cache: false,
     views: {
       'tab-change': {
-        templateUrl: 'templates/change-strangers-id.html',
-        controller: 'StrangersIdCtrl'
+        templateUrl: 'templates/change-users-id.html',
+        controller: 'UsersIdCtrl'
       }
     }
   })
-  .state('tab.home-strangers-id', {
-    url: '/home/strangers/:id',
-    cache: false,
-    views: {
-      'tab-home': {
-        templateUrl: 'templates/home-strangers-id.html',
-        controller: 'StrangersIdCtrl'
-      }
-    }
-  })
-  .state('tab.home-partners-id', {
-    url: '/home/partners/:id',
-    cache: false,
-    views: {
-      'tab-home': {
-        templateUrl: 'templates/home-partners-id.html',
-        controller: 'PartnersIdCtrl'
-      }
-    }
-  })
+
   .state('tab.account', {
     url: '/account',
     views: {
