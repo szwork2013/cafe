@@ -19,6 +19,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $http.defaults.headers.common["Authorization"] = "Token token=" + $window.localStorage.token
   }
 
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -108,22 +109,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
-  .state('tab.change', {
-    url: '/change',
+  .state('tab.cafe', {
+    url: '/cafe',
     // cache: false,
     views: {
-      'tab-change': {
-        templateUrl: 'templates/tab-change.html',
-        controller: 'ChangeCtrl'
+      'tab-cafe': {
+        templateUrl: 'templates/tab-cafe.html',
+        controller: 'CafeCtrl'
       }
     }
   })
-  .state('tab.change-users-id', {
-    url: '/change/users/:id',
+  .state('tab.cafe-users-id', {
+    url: '/cafe/users/:id',
     // cache: false,
     views: {
-      'tab-change': {
-        templateUrl: 'templates/change-users-id.html',
+      'tab-cafe': {
+        templateUrl: 'templates/cafe-users-id.html',
         controller: 'UsersIdCtrl'
       }
     }
@@ -172,6 +173,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/tab/cafe');
 
 });

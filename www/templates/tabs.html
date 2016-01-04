@@ -4,21 +4,21 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <!-- <ion-tabs class="tabs-icon-top tabs-positive tabs-item-hide" > -->
-<ion-tabs class="tabs-striped tabs-color-assertive tabs-icon-top">
+<ion-tabs class="tabs-color-dark tabs-icon-top">
   <!-- Home Tab -->
-  <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline"  href="#/tab/home">
+  <ion-tab ng-if="currentUser" title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline"  href="#/tab/home">
     <ion-nav-view  name="tab-home"></ion-nav-view>
   </ion-tab>
   <!-- Write Tab -->
-  <ion-tab title="Uphoto" icon-off="ion-ios-plus-outline" icon-on="ion-ios-plus" href="#/tab/uphoto">
+  <ion-tab ng-if="currentUser" title="Uphoto" icon-off="ion-ios-plus-outline" icon-on="ion-ios-plus" href="#/tab/uphoto">
     <ion-nav-view name="tab-uphoto"></ion-nav-view>
   </ion-tab>
   <!-- Crosslang Tab -->
-  <ion-tab title="Change" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/change">
-    <ion-nav-view name="tab-change"></ion-nav-view>
+  <ion-tab title="Cafe" icon-off="ion-coffee-outline" icon-on="ion-coffee" href="#/tab/cafe">
+    <ion-nav-view name="tab-cafe"></ion-nav-view>
   </ion-tab>
   <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/account">
+  <ion-tab ng-if="currentUser" title="Account" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 

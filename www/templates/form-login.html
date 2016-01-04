@@ -1,4 +1,8 @@
 <ion-view view-title="Login">
+  <ion-nav-buttons side="secondary">
+    <a href="#/tab/cafe" class="button button-icon button-clear ion-ios-close-empty" >
+    </a>
+  </ion-nav-buttons>
   <ion-content>
     <div ng-show="loginErr" style="padding:10px; color:red;">{{loginErr}}</div>
     <form ng-submit="doLogin()">

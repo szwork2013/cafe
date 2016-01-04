@@ -1,20 +1,16 @@
 angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $window, $http, $state, $rootScope, Session, User, $ionicSlideBoxDelegate) {
-  if ($window.localStorage.token) {
-    $state.go('tab.home', {}, {reload: true})
-  } else {
-    $state.go('forms', {}, {reload: true})
-  }
-  $scope.currentUser = Boolean($window.localStorage.token)
+  $rootScope.currentUser = Boolean($window.localStorage.token)
   // Form data for the login modal
   $scope.logout = function() {
     $window.localStorage.token = ''
-    $scope.currentUser = Boolean($window.localStorage.token)
+    $rootScope.currentUser = Boolean($window.localStorage.token)
     $http.defaults.headers.common['Authorization'] = ''
     console.log($window.localStorage.token)
     $rootScope.loginErr = ''
     $rootScope.signupErr = ''
-    $state.go('forms', {}, {reload: true})
+    $state.go('tab.cafe', {}, {reload: true})
+    $window.location.reload()
   }
   $scope.reload =function() {
     $window.location.reload()
@@ -23,9 +19,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Qiniu) {
-  $scope.reload =function() {
-    $window.location.reload()
-  }
   $scope.loginData = {email: "cf1@gmail.com", password: "191954"}
   $scope.signupData = {name:'cf1'}
   $rootScope.loginErr = ''
@@ -34,13 +27,12 @@ angular.module('starter.controllers', [])
   $scope.doLogin = function() {
     var sess = new Session($scope.loginData)
     sess.$save(function(data) {
-      console.log(data.token)
       if (data.token) {
         $window.localStorage.token = data.token
-        $scope.currentUser = Boolean($window.localStorage.token)
+        $rootScope.currentUser = Boolean($window.localStorage.token)
         $http.defaults.headers.common['Authorization'] = "Token token=" + data.token
         console.log($window.localStorage.token)
-        $state.go('tab.home', {}, {reload: true})
+        $state.go('tab.cafe', {}, {reload: false})
       } else {
         console.log(data.err)
         $rootScope.loginErr = data.err
@@ -58,10 +50,11 @@ angular.module('starter.controllers', [])
       user.$save(function(data) {
         if (data.token) {
           $window.localStorage.token = data.token
-          $scope.currentUser = Boolean($window.localStorage.token)
+          $rootScope.currentUser = Boolean($window.localStorage.token)
           $http.defaults.headers.common['Authorization'] = "Token token=" + data.token
           console.log($window.localStorage.token)
-          $state.go('tab.home', {}, {reload: true})
+          $state.go('tab.cafe', {}, {reload: true})
+          // $window.location.reload()
         } else {
           console.log(data.err)
           $rootScope.signupErr = data.err
@@ -119,7 +112,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChangeCtrl', function($scope, $http, $rootScope, $state, $window, $resource, Cafe) {
+.controller('CafeCtrl', function($scope, $http, $rootScope, $state, $window, $resource, Cafe) {
   $scope.photos = []; $scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
   $scope.loadMore = function() {
       Cafe.query({page: $scope.page, lastId: $scope.lastId})
