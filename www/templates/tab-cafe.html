@@ -1,12 +1,12 @@
-<ion-view view-title="go top">
-  <ion-nav-buttons side="secondary">
-    <button ng-click="reload()" class="button button-icon button-clear ion-ios-refresh-empty" >
-    </button>
-  </ion-nav-buttons>
-  <ion-nav-buttons  side="primary">
-    <a ng-if="!currentUser" href="#/forms" class="button button-icon button-clear ion-log-in" >
+<ion-view view-title="">
+  <ion-nav-buttons  side="left">
+    <a ng-if="!currentUser" href="#/forms" class="button button-icon button-clear button-assertive" >
       dang ky
     </a>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button ng-click="reload()" class="button button-icon button-clear ion-ios-refresh-empty" >
+    </button>
   </ion-nav-buttons>
   <ion-content style="">
     <div ng-style="{ 'margin-left' : 'auto', 'margin-right' : 'auto','max-width':{{containerwidth}}+'px' }">
