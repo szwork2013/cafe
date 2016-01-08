@@ -1,5 +1,5 @@
 {
-  "name": "changeion",
+  "name": "cafe",
   "version": "1.0.0",
   "description": "tabbar1.0: An Ionic project",
   "dependencies": {
@@ -23,7 +23,7 @@
     "org.apache.cordova.camera"
   ],
   "cordovaPlatforms": [
-    "ios",
-    "android"
+    "android",
+    "ios"
   ]
 }
