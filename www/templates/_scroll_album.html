@@ -1,0 +1,9 @@
+<ion-scroll direction="x" zooming="true" min-zoom="0.5" paging="true" class="album-ion-scroll">
+  <a ng-repeat="p in photos" style="">
+    <img src="{{p.url}}" style="width: auto; max-height:320px;" >
+  </a>
+  <div class="" style="display:inline; width: 300px; height: 300px;padding:10px;">
+    <button ng-show="dataLength == limit" ng-click="loadMore()" class="button button-clear button-assertive" style="position:absolute;bottom:200px;">load more ... </button>
+    <button ng-hide="dataLength == limit" class="button button-clear button-stable" style="position:absolute;bottom:200px;">no more</button>
+  </div>
+</ion-scroll>
