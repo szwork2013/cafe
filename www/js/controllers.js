@@ -158,10 +158,45 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MessageCtrl', function($scope, $http, $rootScope,$cordovaCamera,$cordovaCapture, $cordovaImagePicker,$resource,$cordovaInAppBrowser) {
+.controller('AccountCtrl', function($scope,$http,$cordovaCamera,$cordovaCapture) {
+
+})
+.controller('UserupCtrl', function($scope, $http, $state, $rootScope, $window, $resource, Qiniu) {
+  $scope.userupData = {}
+  var Userup =  $resource($rootScope.baseUrl + '/api/userup/:id')
+  Userup.get({id:0}).$promise.then(function(data) {
+    // console.log(JSON.stringify(data))
+    $scope.userupData.name = data.user.name
+    $scope.userupData.description = data.user.description
+    $scope.userupData.email = data.user.email
+    $scope.userupData.avatar = data.user.avatar
+  })
+  $scope.getFile = function(f) {
+    $scope.temfile = f
+  }
+  $scope.avt = true
+  $scope.doUserup = function() {
+    // if (!$scope.temfile) {$scope.avt = false; return}
+    if ($scope.temfile){
+      Qiniu.ngFileUp($scope.temfile).then(function (resp) {
+        $scope.userupData.avatar = "http://7xj5ck.com1.z0.glb.clouddn.com/" + resp.data.key
+        var user = new Userup($scope.userupData)
+        user.$save(function(data) {
+          $state.go('tab.home', {}, {reload: true})
+          // $window.location.reload()
+        })
+      })
+    } else {
+      var user = new Userup($scope.userupData)
+      user.$save(function(data) {
+        $state.go('tab.home', {}, {reload: true})
+        // $window.location.reload()
+      })
+    }
+  }
 
 })
 
-.controller('AccountCtrl', function($scope,$http,$cordovaCamera,$cordovaCapture) {
+.controller('MessageCtrl', function($scope, $http, $rootScope,$cordovaCamera,$cordovaCapture, $cordovaImagePicker,$resource,$cordovaInAppBrowser) {
 
 })

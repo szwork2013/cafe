@@ -140,6 +140,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  .state('tab.account-userup', {
+    url: '/account/userup',
+    cache: false,
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/account-userup.html',
+        controller: 'UserupCtrl'
+      }
+    }
+  })
+
   .state('tab.message', {
     url: '/message',
     // cache: false,
