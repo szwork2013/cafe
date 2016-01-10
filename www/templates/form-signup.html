@@ -1,5 +1,5 @@
 <ion-view view-title="Signup">
-  <ion-nav-buttons side="secondary">
+  <ion-nav-buttons side="right">
     <a href="#/tab/cafe" class="button button-icon button-clear ion-ios-close-empty" >
     </a>
   </ion-nav-buttons>
@@ -38,9 +38,10 @@
           </button>
           <img id="avatar" ngf-no-object-url="true" ngf-src="file" ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" />
         </label>
-      <label class="item">
-        <button class="button button-block button-positive" type="submit">sign up</button>
-      </label>
+        <a ng-hide="avt" class="button button-small button-assertive"> please select a picture </a>
+      <div style="margin-left:auto; margin-right:auto; margin-top:10px; max-width: 400px;">
+        <button class="button button-block button-positive" type="submit">submit</button>
+      </div>
     </div>
     <!-- <div>{{signUpData}}</div> -->
   </form>

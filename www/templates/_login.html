@@ -1,0 +1,19 @@
+<!-- <div style="height:300px;"> -->
+  <div ng-show="loginErr" style="padding:10px; color:red;">{{loginErr}}</div>
+  <form ng-submit="doLogin()">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="loginData.email">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="loginData.password">
+      </label>
+      <div style="margin-left:auto; margin-right:auto; margin-top:10px; max-width: 400px;">
+        <button class="button button-block button-positive" type="submit">submit</button>
+      </div>
+    </div>
+    <!-- <div>{{loginData}}</div> -->
+  </form>
+<!-- </div> -->

@@ -1,0 +1,42 @@
+<div style="height:50vh;">
+  <div ng-show="signupErr" style="padding:10px; color:red;">{{signupErr}}</div>
+  <form ng-submit="doSignup()">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">ten cafe</span>
+        <input type="text" placeholder="ten cafe" ng-model="signupData.name" >
+      </label>
+      <label class="item item-input">
+        <span class="input-label">thanh pho</span>
+        <input type="text" placeholder="o thanh pho nao" ng-model="signupData.city" >
+      </label>
+      <label class="item item-input">
+        <span class="input-label">mo ta</span>
+        <input type="text" placeholder="mot cau mo ta quan cafe" ng-model="signupData.description" >
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="signupData.email" >
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="signupData.password" >
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password Confirmation</span>
+        <input type="password" ng-model="signupData.password_confirmation" >
+      </label>
+      <label class="item">
+        <button ngf-select="getFile(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+        accept="image/*"  ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" class="button button-assertive button-small" >
+        click to set avatar
+      </button>
+      <img id="avatar" ngf-no-object-url="true" ngf-src="file" ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" />
+    </label>
+    <label class="item">
+      <button class="button button-block button-positive" type="submit">submit</button>
+    </label>
+  </div>
+  <!-- <div>{{signUpData}}</div> -->
+</form>
+</div>

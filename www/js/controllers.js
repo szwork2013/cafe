@@ -18,11 +18,20 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Qiniu) {
+.controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Qiniu, $ionicSlideBoxDelegate) {
   $scope.loginData = {email: "cf1@gmail.com", password: "191954"}
-  $scope.signupData = {name:'cf1'}
-  $rootScope.loginErr = ''
-  $rootScope.signupErr = ''
+  $scope.signupData = {name:'cf1'}; $rootScope.loginErr = ''; $rootScope.signupErr = ''
+  // $ionicSlideBoxDelegate.$getByHandle('my-handle')
+  $scope.nextSlide = function() {
+    $ionicSlideBoxDelegate.next();
+  }
+  $scope.preSlide = function() {
+    $ionicSlideBoxDelegate.previous();
+  }
+  $scope.slideHasChanged = function($index) {
+    // $ionicScrollDelegate.resize();
+    console.log($ionicSlideBoxDelegate.currentIndex() + 'ddddd')
+  }
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     var sess = new Session($scope.loginData)
@@ -42,7 +51,9 @@ angular.module('starter.controllers', [])
   $scope.getFile = function(f) {
     $scope.temfile = f
   }
+  $scope.avt = true
   $scope.doSignup = function() {
+    if (!$scope.temfile) {$scope.avt = false; return}
     Qiniu.ngFileUp($scope.temfile).then(function (resp) {
       // console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
       $scope.signupData.avatar = "http://7xj5ck.com1.z0.glb.clouddn.com/" + resp.data.key
