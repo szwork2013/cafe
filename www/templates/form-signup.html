@@ -16,8 +16,8 @@
           <input type="text" placeholder="o thanh pho nao" ng-model="signupData.city" >
         </label>
         <label class="item item-input">
-          <span class="input-label">mo ta</span>
-          <input type="text" placeholder="mot cau mo ta quan cafe" ng-model="signupData.description" >
+          <span class="input-label">dia chi</span>
+          <input type="text" placeholder="dia chi" ng-model="signupData.description" >
         </label>
         <label class="item item-input">
           <span class="input-label">Email</span>
@@ -35,7 +35,7 @@
           <button ngf-select="getFile(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
           accept="image/*"  ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" class="button button-assertive button-small" >
           click to set avatar
-          </button>
+          </button><button class="button-icon button-clear icon ion-images"></button>
           <img id="avatar" ngf-no-object-url="true" ngf-src="file" ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" />
         </label>
         <a ng-hide="avt" class="button button-small button-assertive"> please select a picture </a>

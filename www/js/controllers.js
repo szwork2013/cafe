@@ -57,7 +57,7 @@ angular.module('starter.controllers', [])
     Qiniu.ngFileUp($scope.temfile).then(function (resp) {
       // console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
       $scope.signupData.avatar = "http://7xj5ck.com1.z0.glb.clouddn.com/" + resp.data.key
-      var user = new User($scope.signupData)
+      var user = new User({user:$scope.signupData})
       user.$save(function(data) {
         if (data.token) {
           $window.localStorage.token = data.token
