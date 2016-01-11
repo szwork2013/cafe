@@ -1,6 +1,6 @@
 <div style="height:50vh;">
   <div ng-show="signupErr" style="padding:10px; color:red;">{{signupErr}}</div>
-  <form ng-submit="doSignup()">
+  <form >
     <div class="list">
       <label class="item item-input">
         <span class="input-label">ten cafe</span>
@@ -34,7 +34,7 @@
       <img id="avatar" ngf-no-object-url="true" ngf-src="file" ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" />
     </label>
     <label class="item">
-      <button class="button button-block button-positive" type="submit">submit</button>
+      <button class="button button-block button-positive" ng-click="doSignup()">submit</button>
     </label>
   </div>
   <!-- <div>{{signUpData}}</div> -->

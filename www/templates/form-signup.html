@@ -5,7 +5,7 @@
   </ion-nav-buttons>
   <ion-content>
     <div ng-show="signupErr" style="padding:10px; color:red;">{{signupErr}}</div>
-    <form ng-submit="doSignup()">
+    <form >
       <div class="list">
         <label class="item item-input">
           <span class="input-label">ten cafe</span>
@@ -40,7 +40,7 @@
         </label>
         <a ng-hide="avt" class="button button-small button-assertive"> please select a picture </a>
       <div style="margin-left:auto; margin-right:auto; margin-top:10px; max-width: 400px;">
-        <button class="button button-block button-positive" type="submit">submit</button>
+        <button class="button button-block button-positive" ng-click="doSignup()">submit</button>
       </div>
     </div>
     <!-- <div>{{signUpData}}</div> -->
