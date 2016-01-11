@@ -4,11 +4,10 @@
       <label class="item item-input">
         <textarea ng-model="cafe.content" placeholder="write something" cols="5" rows="5"></textarea>
       </label>
-      <img id="photo" ngf-no-object-url="true" ngf-resize="{width: 700, height: 700, quality: 0.9}" ngf-src="temfile" width="100%" height="auto" />
       <div ng-repeat="f in temfiles track by $index" >
         <img  ngf-src="f" width="100%" height="auto" />
       </div>
-      <div ng-show="uppercent" class="item range range-assertive">
+      <div ng-if="uppercent" class="item range range-assertive">
         <input type="range" ng-model="uppercent" name="volume" min="0" max="100" value="1">
       </div>
       <div >
@@ -17,21 +16,9 @@
         click to choose photo
           <i class="icon ion-images"></i>
         </button>
-       </div>
-       <button ng-show="file" ng-click="refresh()" class="button button-assertive"> reselect photo </button>
-       <button ng-show="file" ng-click="upPhoto()" class="button button-calm button-block"> submit photo </button>
+      </div>
+      <button ng-if="file" ng-click="refresh()" class="button button-assertive"> reselect photo </button>
+      <button ng-if="file" ng-click="upPhoto()" class="button button-calm button-block"> submit photo </button>
     </div>
-
 </ion-content>
 </ion-view>
-<!-- <div style="margin-top:10px;">
-<form  ng-submit="sendPost()">
-<div class="list">
-<label class="item item-input">
-<textarea ng-model="post.content" placeholder="write something" cols="5" rows="5"></textarea>
-</label>
-<ion-checkbox ng-model="post.hidden">hide the post 隐藏博客</ion-checkbox>
-<input  type="submit"  value="submit" class="button button-calm button-block">
-</div>
-</form>
-</div> -->
