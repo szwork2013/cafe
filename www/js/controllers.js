@@ -99,23 +99,21 @@ angular.module('starter.controllers', [])
 .controller('UphotoCtrl', function($scope, $http, $state, $rootScope, $window, Qiniu, Cafe) {
   $scope.cafe = {content:''}; $scope.temfiles = []
   $scope.listFiles = function(f) {
-    $scope.temfiles.push(f) // console.log($scope.cafe.content)
+    $scope.temfile = f; //$scope.temfiles.push(f) // console.log($scope.cafe.content)
   }
   $scope.refresh = function() {
     $state.go($state.current, {}, {reload: true})
   }
   $scope.upPhoto = function() {
-    // $scope.temfiles.forEach(function(file) {
-      Qiniu.ngFileUp($scope.temfiles[0]).then(function (resp) {
-        // console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
-        // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z
+      Qiniu.ngFileUp($scope.temfile).then(function (resp) {
+        // http://7xj5ck.com1.z0.glb.clouddn.com/2015-11-28T06%3A11%3A25.113Z// console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.key + JSON.stringify(resp.data))
         $scope.cafe.key = resp.data.key
         var cafe = new Cafe($scope.cafe) //{key: resp.data.key, content: $scope.content})
         cafe.$save(function(data) {
           $state.go('tab.home', {}, {reload: true})
         })
       }, function (resp) {
-        console.log('Error status: ' + resp.status)
+        $scope.status= resp.status; console.log('Error status: ' + resp.status)
       }, function (evt) {
         $scope.uppercent = parseInt(100.0 * evt.loaded / evt.total)
         // console.log('progress: ' + $scope.uppercent + '% ' + evt.config.data.file.name)

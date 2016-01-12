@@ -4,12 +4,13 @@
       <label class="item item-input">
         <textarea ng-model="cafe.content" placeholder="write something" cols="5" rows="5"></textarea>
       </label>
-      <div ng-repeat="f in temfiles track by $index" >
-        <img  ngf-src="f" width="100%" height="auto" />
-      </div>
+      <!-- <div ng-repeat="f in temfiles track by $index" > -->
+        <img  ngf-src="file" width="100%" height="auto" />
+      <!-- </div> -->
       <div ng-if="uppercent" class="item range range-assertive">
         <input type="range" ng-model="uppercent" name="volume" min="0" max="100" value="1">
       </div>
+      <div ng-if="status"><p>{{status}} </p></div>
       <div >
         <button ng-hide="file" ngf-select  ngf-change="listFiles(file)" ng-model="file" name="file" ngf-pattern="'image/*'"
         accept="image/*"  ngf-resize="{width: 700, height: 700, quality: 0.9}" class="button button-stable button-block" >
