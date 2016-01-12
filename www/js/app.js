@@ -10,11 +10,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // $rootScope.baseUrl = "http://localhost:3000"
   //  $rootScope.baseUrl = "http://162.243.143.15"
   $rootScope.baseUrl = "http://changiif.com"
-  $resource('http://changiif.com/uptoken').get().$promise.then(function(data) {
-    $window.localStorage.qiniuToken = data.uptoken
-    console.log('qiniuT  ' + $window.localStorage.qiniuToken)
+  $rootScope.$on('qiniuUPdate', function() {
+    $resource('http://changiif.com/uptoken').get().$promise.then(function(data) {
+      $window.localStorage.qiniuToken = data.uptoken
+      console.log('qiniuT  ' + $window.localStorage.qiniuToken)
+    })
   })
-  console.log($window.localStorage.token)
+  $rootScope.$broadcast('qiniuUPdate')
   if ($window.localStorage.token) {
     $http.defaults.headers.common["Authorization"] = "Token token=" + $window.localStorage.token
   }

@@ -19,6 +19,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Qiniu, $ionicSlideBoxDelegate) {
+  $rootScope.$broadcast('qiniuUPdate')
   $scope.loginData = {email: "cf1@gmail.com", password: "191954"}
   $scope.signupData = {name:'cf1'}; $rootScope.loginErr = ''; $rootScope.signupErr = ''
   // $ionicSlideBoxDelegate.$getByHandle('my-handle')
@@ -97,7 +98,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('UphotoCtrl', function($scope, $http, $state, $rootScope, $window, Qiniu, Cafe) {
-  $scope.cafe = {content:''}; $scope.temfiles = []
+  $rootScope.$broadcast('qiniuUPdate'); $scope.cafe = {content:''}; $scope.temfiles = []
   $scope.listFiles = function(f) {
     $scope.temfile = f; //$scope.temfiles.push(f) // console.log($scope.cafe.content)
   }
@@ -160,7 +161,7 @@ angular.module('starter.controllers', [])
 
 })
 .controller('UserupCtrl', function($scope, $http, $state, $rootScope, $window, $resource, Qiniu) {
-  $scope.userupData = {}
+  $rootScope.$broadcast('qiniuUPdate'); $scope.userupData = {}
   var Userup =  $resource($rootScope.baseUrl + '/api/userup/:id')
   Userup.get({id:0}).$promise.then(function(data) {
     // console.log(JSON.stringify(data))
