@@ -1,13 +1,13 @@
 <ion-view hide-nav-bar="true" view-title="Uphoto">
   <ion-content class="padding" style="padding-top:20px;">
     <div style="margin-left:auto; margin-right:auto; max-width: 500px;">
-      <label class="item item-input">
+      <img  ngf-src="file" width="100%" height="auto" />
+      <button ng-if="file" ng-click="refresh()" class="button button-assertive button-icon button-clear ion-trash-b" > reselect </button>
+      <label ng-if="file" class="item item-input">
         <textarea ng-model="cafe.content" placeholder="write something" cols="5" rows="5"></textarea>
       </label>
       <!-- <div ng-repeat="f in temfiles track by $index" > -->
-        <img  ngf-src="file" width="100%" height="auto" />
       <!-- </div> -->
-      <button ng-if="file" ng-click="refresh()" class="button button-assertive button-icon button-clear ion-trash-b" > reselect </button>
       <div ng-if="uppercent" class="item range range-assertive">
         <input type="range" ng-model="uppercent" name="volume" min="0" max="100" value="1">
       </div>
