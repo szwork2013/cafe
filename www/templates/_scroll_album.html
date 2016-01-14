@@ -1,6 +1,6 @@
 <ion-scroll direction="x" zooming="true" min-zoom="0.5" paging="true" class="album-ion-scroll">
   <div ng-repeat="p in photos" style="display:inline-block;padding:2px;">
-    <p ng-if="p.content" style="max-width:200px;overflow-y:hidden;white-space:nowrap;">{{p.content}}</p>
+    <p ng-if="p.content" contenteditable='true' style="max-width:200px;overflow-y:hidden;white-space:nowrap;text-decoration:none;">{{p.content}}</p>
     <img src="{{p.url}}" style="width: auto; max-height:320px;">
   </div>
   <div class="" style="display:inline; width: 300px; height: 300px;padding:10px;">
