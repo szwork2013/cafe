@@ -24,9 +24,9 @@
         <img src="{{userupData.avatar}}" ngf-resize="{width: 80, height: 80, quality: 0.9, ratio: '1:1', centerCrop: true}" />
       </label>
       <a ng-hide="avt" class="button button-small button-assertive"> please select a picture </a>
-      <label class="item">
-        <button class="button button-block button-positive" ng-click="doUserup()">submit</button>
-      </label>
+      <div style="margin-left:auto; margin-right:auto; margin-top:10px; max-width: 400px;">
+        <button class="button button-full button-dark" ng-click="doUserup()">submit</button>
+      </div>
     </div>
     <!-- <div>{{userupData}}</div> -->
   </form>
