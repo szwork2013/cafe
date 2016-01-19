@@ -127,7 +127,7 @@ angular.module('starter.controllers', [])
   $scope.loadMore = function() {
       Cafe.query({page: $scope.page, lastId: $scope.lastId})
       .$promise.then(function(data) {
-        console.log(data.length)
+        // console.log(data.length)
         $scope.photos1 = $scope.photos1.concat(data.slice(0,2))
         $scope.photos2 = $scope.photos2.concat(data.slice(2,4))
         $scope.photos3 = $scope.photos3.concat(data.slice(4))
