@@ -128,7 +128,6 @@ angular.module('starter.controllers', [])
       Cafe.query({page: $scope.page, lastId: $scope.lastId})
       .$promise.then(function(data) {
         var middle; data.length%2 == 0?(middle = data.length/2):(middle = (data.length+1)/2)
-        console.log(middle)
         $scope.photos.push(data.slice(0,middle))
         $scope.photos.push(data.slice(middle))
         // $scope.photos = $scope.photos.concat(data)
