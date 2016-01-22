@@ -20,7 +20,7 @@ angular.module('starter.controllers', [])
 
 .controller('FormsCtrl', function($scope, $http, $state, $rootScope, $window, $stateParams, Session, User, Qiniu, $ionicSlideBoxDelegate) {
   $rootScope.$broadcast('qiniuUPdate')
-  $scope.loginData = {email: "cf1@gmail.com", password: "191954"}
+  $scope.loginData = {email: "cf1@gmail.com", password: ""}
   $scope.signupData = {name:'cf1'}; $rootScope.loginErr = ''; $rootScope.signupErr = ''
   // $ionicSlideBoxDelegate.$getByHandle('my-handle')
   $scope.nextSlide = function() {
@@ -123,14 +123,15 @@ angular.module('starter.controllers', [])
 })
 
 .controller('CafeCtrl', function($scope, $http, $rootScope, $state, $window, $resource, Cafe) {
-  $scope.photos1 = [];$scope.photos2 = []; $scope.photos3 = [];$scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
+  $scope.photos = [];$scope.page = 0; $scope.lastId = 0; $scope.limit = 5; $scope.dataLength = $scope.limit
   $scope.loadMore = function() {
       Cafe.query({page: $scope.page, lastId: $scope.lastId})
       .$promise.then(function(data) {
-        // console.log(data.length)
-        $scope.photos1 = $scope.photos1.concat(data.slice(0,2))
-        $scope.photos2 = $scope.photos2.concat(data.slice(2,4))
-        $scope.photos3 = $scope.photos3.concat(data.slice(4))
+        var middle; data.length%2 == 0?(middle = data.length/2):(middle = (data.length+1)/2)
+        console.log(middle)
+        $scope.photos.push(data.slice(0,middle))
+        $scope.photos.push(data.slice(middle))
+        // $scope.photos = $scope.photos.concat(data)
         $scope.page += 1
         $scope.$broadcast('scroll.infiniteScrollComplete')
       })
